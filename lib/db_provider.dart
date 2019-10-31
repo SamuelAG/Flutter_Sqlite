@@ -38,8 +38,12 @@ class DBProvider {
       "INSERT into DOG (id, name, age)"
       " VALUES (?, ?, ?)",
       [dog.id, dog.name, dog.age]);
-    //var query = await db.insert("DOG", dog.toJson());
     return query;
+  }
+
+  deleteDog(int id) async {
+    final db = await database;
+    return db.rawDelete("Delete from DOG where id = ?", [id]);
   }
 
   Future<List<Dog>> getAllDogs() async {
